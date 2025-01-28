@@ -1,6 +1,6 @@
 from models import db, User, Pet, Appointment
-from flask import jsonify, request, Blueprint
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask import jsonify, request, Blueprint # type: ignore
+from flask_jwt_extended import jwt_required, get_jwt_identity # type: ignore
 from datetime import datetime
 
 

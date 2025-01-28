@@ -1,9 +1,9 @@
-from flask import Flask
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
-from flask_jwt_extended import JWTManager
-from flask_cors import CORS
-from flask_mail import Mail, Message
+from flask import Flask # type: ignore
+from flask_migrate import Migrate # type: ignore
+from flask_sqlalchemy import SQLAlchemy # type: ignore
+from flask_jwt_extended import JWTManager # type: ignore
+from flask_cors import CORS # type: ignore
+from flask_mail import Mail, Message # type: ignore
 from datetime import timedelta
 from models import db
 
