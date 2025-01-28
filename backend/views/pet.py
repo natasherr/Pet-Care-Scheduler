@@ -6,8 +6,10 @@ pet_bp = Blueprint('pet', __name__)
 
 # FETCH PETS
 @pet_bp.route('/pets')
+@jwt_required()
 def fetch_pets():
-    pets = Pet.query.filter_by(user_id=get_jwt_identity()).all()
+    current_user_id = get_jwt_identity()
+    pets = Pet.query.filter_by(user=current_user_id).all()
 
     pet_list = [{
         "pet_id": pet.pet_id,
@@ -20,8 +22,10 @@ def fetch_pets():
 
 # FETCH PET BY ID
 @pet_bp.route('/pets/<int:pet_id>')
+@jwt_required()
 def fetch_pet(pet_id):
-    pet = Pet.query.filter_by(pet_id=pet_id).first()
+    current_user_id = get_jwt_identity()
+    pet = Pet.query.filter_by(pet_id=pet_id, user=current_user_id).first()
     if not pet:
         return jsonify({"message": "Pet not found"}), 404
     else:
@@ -35,7 +39,7 @@ def fetch_pet(pet_id):
 
 # ADD PET
 @pet_bp.route('/pets/add', methods=['POST'])
-@jwt_required
+@jwt_required()
 def add_pet():
     current_user_id = get_jwt_identity()
     data = request.get_json()
@@ -44,7 +48,7 @@ def add_pet():
         name = data["name"],
         breed = data["breed"],
         age = data["age"],
-        user_id = current_user_id
+        user= current_user_id
     )
     db.session.add(new_pet)
     db.session.commit()
@@ -55,7 +59,7 @@ def add_pet():
 @jwt_required()
 def update_pet(pet_id):
     current_user_id = get_jwt_identity()
-    pet = Pet.query.filter_by(pet_id=pet_id, user_id=current_user_id).first()
+    pet = Pet.query.filter_by(pet_id=pet_id, user=current_user_id).first()
 
     if not pet:
         return jsonify({"error": "Pet not found"}), 404
@@ -73,7 +77,7 @@ def update_pet(pet_id):
 @jwt_required()
 def delete_pet(pet_id):
     current_user_id = get_jwt_identity()
-    pet = Pet.query.filter_by(pet_id=pet_id, user_id=current_user_id).first()
+    pet = Pet.query.filter_by(pet_id=pet_id, user=current_user_id).first()
 
     if not pet:
         return jsonify({"error": "Pet not found"}), 404
