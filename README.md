@@ -23,3 +23,11 @@ Models:
 3. Appointment: appointment_id (PK), pet (ForeignKey to Pet), appointment_date, type, status
 4. Routine: routine_id (PK), pet (ForeignKey to Pet), routine_date, type
 5. Supply: supply_id (PK), pet (ForeignKey to Pet), item, quantity
+
+Back-End/Front-End
+Authentication(JWT)
+Form validation(All inputs)
+At least 10 operations (CRUD)-Already specified in your project
+Use of blueprints(separating your functions) in your backend i.e have views with different files  to handle different models i.e auth.py, user.py, todo.py, etc
+A well-styled and responsive frontend (with routing and footer).
+A profile page, with an update of the profile
