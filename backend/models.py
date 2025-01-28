@@ -11,7 +11,7 @@ class User(db.Model):
     password = db.Column(db.String(128), nullable=False)
     is_verified = db.Column(db.Boolean, default=False)
 
-    pets = db.relationship('Pet', backref="user", lazy=True)
+    pets = db.relationship('Pet', backref="owner", lazy=True)  
 
 class Pet(db.Model):
     pet_id = db.Column(db.Integer, primary_key=True)
@@ -21,9 +21,9 @@ class Pet(db.Model):
 
     user = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)
 
-    appointments = db.relationship('Appointment', backref="pet", lazy=True)
-    routines = db.relationship('Routine', backref="pet", lazy=True)
-    supplies = db.relationship('Supplies', backref="pet", lazy=True)
+    appointments = db.relationship('Appointment', backref="appointment", lazy=True) 
+    routines = db.relationship('Routine', backref="routine", lazy=True)
+    supplies = db.relationship('Supplies', backref="supply", lazy=True)
 
 class Appointment(db.Model):
     appointment_id = db.Column(db.Integer, primary_key=True)
@@ -44,7 +44,6 @@ class Supplies(db.Model):
     pet = db.Column(db.Integer, db.ForeignKey('pet.pet_id'), nullable=False)
     item = db.Column(db.String(128), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-    
 
 class TokenBlockList(db.Model):
     id = db.Column(db.Integer, primary_key=True)

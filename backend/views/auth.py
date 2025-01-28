@@ -30,12 +30,16 @@ def current_user():
     current_user_id  = get_jwt_identity()
 
     user =  User.query.get(current_user_id)
+
+    if user is None:
+        return jsonify({"error": "User not found"}), 404
+
     user_data = {
-            'id':user.user_id,
-            'name':user.name,
-            'email':user.email,
-            'is_verified': user.is_verified
-        }
+        'id': user.user_id,
+        'name': user.name,
+        'email': user.email,
+        'is_verified': user.is_verified
+    }
 
     return jsonify(user_data)
 
@@ -47,6 +51,6 @@ def current_user():
 def logout():
     jti = get_jwt()["jti"]
     now = datetime.now(timezone.utc)
-    db.session.add(TokenBlocklist(jti=jti, created_at=now))
+    db.session.add(TokenBlockList(jti=jti, created_at=now))
     db.session.commit()
     return jsonify({"success ":"Logged out successfully"})
