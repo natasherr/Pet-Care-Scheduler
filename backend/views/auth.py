@@ -1,7 +1,7 @@
-from flask import jsonify, request, Blueprint
+from flask import jsonify, request, Blueprint # type: ignore
 from models import db, User, TokenBlockList
-from werkzeug.security import check_password_hash
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, get_jwt
+from werkzeug.security import check_password_hash # type: ignore
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, get_jwt # type: ignore
 from datetime import datetime, timedelta, timezone
 
 auth_bp = Blueprint("auth_bp", __name__)

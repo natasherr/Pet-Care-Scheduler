@@ -1,9 +1,9 @@
 from models import db, User, Pet
-from flask import jsonify, request, Blueprint
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_mail import Mail, Message
+from flask import jsonify, request, Blueprint # type: ignore
+from werkzeug.security import generate_password_hash, check_password_hash # type: ignore
+from flask_mail import Mail, Message # type: ignore
 from app import app, mail
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity # type: ignore
 
 user_bp = Blueprint('user', __name__)
 
