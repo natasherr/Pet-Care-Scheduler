@@ -9,23 +9,35 @@ supply_bp = Blueprint('supplies', __name__)
 @jwt_required()
 def get_supplies():
     current_user_id = get_jwt_identity()
-    supplies = Supplies.query.join(Pet).filter(Pet.user_id == current_user_id).all()
+    supplies = Supplies.query.join(Pet).filter(Pet.user== current_user_id).all()
 
-    return jsonify([supply.to_dict() for supply in supplies]), 200
+    return jsonify([{
+        "supply_id": supply.supply_id,
+        "pet": supply.pet,
+        "item": supply.item,
+        "quantity": supply.quantity
+    } for supply in supplies]), 200
 
 # FETCH SUPPLY BY ID
 @supply_bp.route("/supplies/<int:supply_id>", methods=["GET"])
 @jwt_required()
 def get_supply_by_id(supply_id):
     current_user_id = get_jwt_identity()
-    supply = Supplies.query.join(Pet).filter(Supplies.supply_id == supply_id, Pet.user_id == current_user_id).first()
+    supply = Supplies.query.join(Pet).filter(Supplies.supply_id == supply_id, Pet.user == current_user_id).first()
 
     if not supply:
         return jsonify({"message": "Supply not found"}), 404
     
     else:
-        return jsonify(supply.to_dict()), 200
+        supply_data = {
+            "supply_id": supply.supply_id,
+            "pet": supply.pet,
+            "item": supply.item,
+            "quantity": supply.quantity
+        }
+        return jsonify(supply_data), 200
     
+
 # ADD A SUPPLY
 @supply_bp.route("/supplies", methods=["POST"])
 @jwt_required()
@@ -43,11 +55,11 @@ def add_supply():
 
 
 # UPDATE A SUPPLY
-@supply_bp.route("/supplies/<int:supply_id>", methods=["PUT"])
+@supply_bp.route("/supplies/<int:supply_id>", methods=["PATCH"])
 @jwt_required()
 def update_supply(supply_id):
     current_user_id = get_jwt_identity()
-    supply = Supplies.query.join(Pet).filter(Supplies.supply_id == supply_id, Pet.user_id == current_user_id).first()
+    supply = Supplies.query.join(Pet).filter(Supplies.supply_id == supply_id, Pet.user== current_user_id).first()
     if not supply:
         return jsonify({"message": "Supply not found"}), 404
 
@@ -55,7 +67,7 @@ def update_supply(supply_id):
     supply.item = data.get("item", supply.item)
     supply.quantity = data.get("quantity", supply.quantity)
     db.session.commit()
-    return jsonify({"message": "Supply updated successfully", "supply": supply.to_dict()}), 200
+    return jsonify({"message": "Supply updated successfully"}), 200
 
 
 # DELETE A SUPPLY
@@ -63,7 +75,7 @@ def update_supply(supply_id):
 @jwt_required()
 def delete_supply(supply_id):
     current_user_id = get_jwt_identity()
-    supply = Supplies.query.join(Pet).filter(Supplies.supply_id == supply_id, Pet.user_id == current_user_id).first()
+    supply = Supplies.query.join(Pet).filter(Supplies.supply_id == supply_id, Pet.user == current_user_id).first()
     if not supply:
         return jsonify({"message": "Supply not found"}), 404
 

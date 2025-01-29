@@ -31,7 +31,7 @@ mail = Mail(app)
 # JWT
 # Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = "super-secretttttttt"  # Change this!
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=2)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=20)
 
 jwt = JWTManager(app)
 # Initializing the jwt

@@ -11,19 +11,39 @@ appointment_bp = Blueprint('appointment', __name__)
 @jwt_required()
 def get_appointments():
     current_user_id = get_jwt_identity()
-    appointments = Appointment.query.join(Pet).filter(Pet.user_id == current_user_id).all()
-    return jsonify([appointment.to_dict() for appointment in appointments])
+    appointments = Appointment.query.join(Pet).filter(Pet.user == current_user_id).all()
+    
+    appointment_data = []
+    for appointment in appointments:
+        appointment_data.append({
+            'appointment_id': appointment.appointment_id,
+            'pet': appointment.pet,
+            'appointment_date': appointment.appointment_date,
+            'type': appointment.type,
+            'status': appointment.status
+            })
+    return jsonify(appointment_data), 200
+
 
 # FETCH APPOINTMENT BY ID
 @appointment_bp.route('/appointments/<int:appointment_id>')
 @jwt_required()
 def get_appointment_by_id(appointment_id):
     current_user_id = get_jwt_identity()
-    appointment = Appointment.query.join(Pet).filter(Appointment.appointment_id == appointment_id, Pet.user_id == current_user_id).first()
+    appointment = Appointment.query.join(Pet).filter(Appointment.appointment_id == appointment_id, Pet.user == current_user_id).first()
 
     if not appointment:
         return jsonify({"error": "Appointment not found"}), 404
-    return jsonify(appointment.to_dict()), 200
+    
+    else:
+        appointment_data = {
+            'appointment_id': appointment.appointment_id,
+            'pet': appointment.pet,
+            'appointment_date': appointment.appointment_date,
+            'type': appointment.type,
+            'status': appointment.status
+        }
+        return jsonify(appointment_data), 200
 
 
 # ADD AN APPOINTMENT
@@ -33,12 +53,18 @@ def add_appointment():
     current_user_id = get_jwt_identity()
     data = request.get_json()
 
+    try:
+        appointment_date = datetime.strptime(data['appointment_date'], "%Y-%m-%d %H:%M:%S")
+    except ValueError:
+        return jsonify({"error": "invalid datetime"}), 400 
+
     appointment = Appointment(
         pet=data['pet'],
-        appointment_date = data['appointment_date'],
-        type = data['type'],
-        status = "Scheduled"
-        )
+        appointment_date=appointment_date,
+        type=data['type'],
+        status="Scheduled"
+    )
+    
     
     db.session.add(appointment)
     db.session.commit()
@@ -50,13 +76,17 @@ def add_appointment():
 @jwt_required()
 def update_appointment(appointment_id):
     current_user_id = get_jwt_identity()
-    appointment = Appointment.query.join(Pet).filter(Appointment.appointment_id == appointment_id, Pet.user_id == current_user_id).first()
+    appointment = Appointment.query.join(Pet).filter(Appointment.appointment_id == appointment_id, Pet.user == current_user_id).first()
     if not appointment:
         return jsonify({"error": "Appointment not found"}), 404
     
     data = request.get_json()
 
-    appointment.appointment_date = data.get("appointment_date", appointment.appointment_date)
+    if "appointment_date" in data:
+        try:
+            appointment.appointment_date = datetime.strptime(data["appointment_date"], "%Y-%m-%d %H:%M:%S")
+        except ValueError:
+            return jsonify({"error": "invalid datetime"}), 400
     appointment.type = data.get("type", appointment.type)
     appointment.status = data.get("status", appointment.status)
 
@@ -69,7 +99,7 @@ def update_appointment(appointment_id):
 def delete_appointment(appointment_id):
     current_user_id = get_jwt_identity()
 
-    appointment = Appointment.query.join(Pet).filter(Appointment.appointment_id == appointment_id, Pet.user_id == current_user_id).first()
+    appointment = Appointment.query.join(Pet).filter(Appointment.appointment_id == appointment_id, Pet.user == current_user_id).first()
     if not appointment:
         return jsonify({"error": "Appointment not found"}), 404
 
