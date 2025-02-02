@@ -37,7 +37,7 @@ Technologies used:
  4. File Structure - Flask Blueprints
  5. Security - JWT Authentication
 
--Deployment:
+- Deployment:
  1. Backend - Render
  2. Frontend - Vercel
 
