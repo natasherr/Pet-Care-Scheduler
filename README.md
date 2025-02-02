@@ -2,8 +2,8 @@ Pet Care Scheduler
 
 Links:
 1. [Github](https://github.com/natasherr/Pet-Care-Scheduler)
-2. Frontend:
-3. Backend:
+2. Frontend: [Vercel](https://pet-care-kohl-mu.vercel.app/)
+3. Backend: [Render](https://pet-care-scheduler.onrender.com)
 4. Recording: 
 
 Problem Statement:
