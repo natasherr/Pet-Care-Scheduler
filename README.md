@@ -1,7 +1,7 @@
 Pet Care Scheduler
 
 Links:
-1. Github : [Github Link](https://github.com/natasherr/Pet-Care-Scheduler)
+1. [Github](https://github.com/natasherr/Pet-Care-Scheduler)
 2. Frontend:
 3. Backend:
 4. Recording: 
@@ -43,7 +43,6 @@ Technologies used:
 
 
 Contact Information:
-Email: [ashley.natasha1@student.moringaschool.com],[ashleyotiusla@gmail.com]
-Phone: [+254706777549]
-GitHub: [Github](https://github.com/natasherr)
+1. Email: [ashley.natasha1@student.moringaschool.com],[ashleyotiusla@gmail.com]
+2. [Github](https://github.com/natasherr)
 
