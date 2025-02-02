@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 
 const Home = () => {
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
-  };
-
+ 
   return (
-    <div className="antialiased text-gray-800 min-h-screen max-width: 100% flex flex-col">
+    <div className="antialiased text-gray-800  w-full min-h-screen flex flex-col">
       
       {/* Main Content */}
       <main id="main-content" className="flex-1 relative">
         {/* About Section */}
         <section id="about" className="bg-neutral-900 text-white py-20">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Why Choose PetCare?</h2>
             <p className="text-lg max-w-2xl mx-auto">We're dedicated to making pet care simple, organized, and effective for every pet parent.</p>
@@ -38,7 +33,7 @@ const Home = () => {
 
         {/* Services Section */}
         <section id="services" className="bg-neutral-900 text-white py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold mb-4">Our Pet Care Services</h2>
               <p className="text-lg text-gray-300 max-w-2xl mx-auto">Comprehensive care solutions for every aspect of your pet's well-being</p>
@@ -61,7 +56,7 @@ const Home = () => {
         </section>
 
         <section id="careGuides" className="bg-neutral-900 text-white py-20">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Pet Care Guides</h2>
             <p className="text-lg max-w-2xl mx-auto">Comprehensive guides to help you provide the best care for your pets</p>
@@ -97,7 +92,7 @@ const Home = () => {
 
 {/* Testimonials Section */}
 <section id="testimonials" className="bg-neutral-900 text-white py-20">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">What Pet Parents Say</h2>
             <p className="text-lg max-w-2xl mx-auto">Real stories from happy pet owners using our care routines</p>
@@ -121,7 +116,7 @@ const Home = () => {
 
         {/* Blog Section */}
         <section id="blog" className="bg-neutral-900 py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-white mb-4">Pet Care Blog</h2>
               <p className="text-lg text-gray-300 max-w-2xl mx-auto">Latest tips and insights for better pet care</p>
