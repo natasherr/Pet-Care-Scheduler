@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
     // LOGIN
     const login = (email, password) => {
         toast.loading("Logging you in ... ");
-        fetch("http://127.0.0.1:5000/login", {
+        fetch("https://pet-care-scheduler.onrender.com/login", {
             method: "POST",
             headers: {
                 'Content-type': 'application/json',
@@ -30,7 +30,7 @@ export const UserProvider = ({ children }) => {
                 sessionStorage.setItem("token", response.access_token);
                 setAuthToken(response.access_token);
 
-                fetch('http://127.0.0.1:5000/current_user', {
+                fetch('https://pet-care-scheduler.onrender.com/current_user', {
                     method: "GET",
                     headers: {
                         'Content-type': 'application/json',
@@ -59,7 +59,7 @@ export const UserProvider = ({ children }) => {
     // LOGOUT
     const logout = () => {
         toast.loading("Logging out ... ");
-        fetch("http://127.0.0.1:5000/logout", {
+        fetch("https://pet-care-scheduler.onrender.com/logout", {
             method: "DELETE",
             headers: {
                 'Content-type': 'application/json',
@@ -87,7 +87,7 @@ export const UserProvider = ({ children }) => {
     
     const fetchCurrentUser = () => {
         console.log("Current user fcn:", authToken);
-        fetch('http://127.0.0.1:5000/current_user', {
+        fetch('https://pet-care-scheduler.onrender.com/current_user', {
             method: "GET",
             headers: {
                 'Content-type': 'application/json',
@@ -105,7 +105,7 @@ export const UserProvider = ({ children }) => {
     // Add User
     const addUser = (name, email, password) => {
         toast.loading("Registering ... ");
-        fetch("http://127.0.0.1:5000/users/add", {
+        fetch("https://pet-care-scheduler.onrender.com/users/add", {
             method: "POST",
             headers: {
                 'Content-type': 'application/json',
@@ -136,7 +136,7 @@ export const UserProvider = ({ children }) => {
         console.log("Updating user:", updatedData);
         toast.loading("Updating user...");
 
-        fetch(`http://127.0.0.1:5000/users/${user_id}`, {
+        fetch(`https://pet-care-scheduler.onrender.com/users/${user_id}`, {
             method: "PATCH",
             headers: {
                 'Content-type': 'application/json',
@@ -163,7 +163,7 @@ export const UserProvider = ({ children }) => {
     const deleteUser = async (user_id) => {
         console.log("Deleting user:", user_id);
         toast.loading("Deleting user...");
-        fetch(`http://127.0.0.1:5000/users/${user_id}`, {
+        fetch(`https://pet-care-scheduler.onrender.com/users/${user_id}`, {
             method: "DELETE",
             headers: {
                 'Content-type': 'application/json',

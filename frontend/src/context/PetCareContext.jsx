@@ -34,7 +34,7 @@ export const PetCareProvider = ({ children }) =>
 // ===================================FETCH=============================================
     // Fetch Pets
     useEffect(()=>{
-        fetch('http://127.0.0.1:5000/pets',{
+        fetch('https://pet-care-scheduler.onrender.com/pets',{
                 method:"GET",
                 headers: {
                     'Content-type': 'application/json',
@@ -50,7 +50,7 @@ export const PetCareProvider = ({ children }) =>
 
 //    Fetch Appointments
    useEffect(()=>{
-    fetch('http://127.0.0.1:5000/appointments',{
+    fetch('https://pet-care-scheduler.onrender.com/appointments',{
             method:"GET",
             headers: {
                 'Content-type': 'application/json',
@@ -65,7 +65,7 @@ export const PetCareProvider = ({ children }) =>
    
    //    Fetch Routines
    useEffect(()=>{
-    fetch('http://127.0.0.1:5000/routines',{
+    fetch('https://pet-care-scheduler.onrender.com/routines',{
         method:"GET",
         headers: {
             'Content-type': 'application/json',
@@ -81,7 +81,7 @@ export const PetCareProvider = ({ children }) =>
     
     // Fetch Supplies
     useEffect(()=>{
-        fetch('http://127.0.0.1:5000/supplies',{
+        fetch('https://pet-care-scheduler.onrender.com/supplies',{
                 method:"GET",
                 headers: {
                     'Content-type': 'application/json',
@@ -102,7 +102,7 @@ export const PetCareProvider = ({ children }) =>
     {
 
         toast.loading("Adding Pet ... ")
-        fetch("http://127.0.0.1:5000/pets/add",{
+        fetch("https://pet-care-scheduler.onrender.com/pets/add",{
             method:"POST",
             headers: {
                 'Content-type': 'application/json',
@@ -142,7 +142,7 @@ export const PetCareProvider = ({ children }) =>
             const formattedDate = formatDate(appointment_date)
     
             toast.loading("Adding Appointment ... ")
-            fetch("http://127.0.0.1:5000/appointments",{
+            fetch("https://pet-care-scheduler.onrender.com/appointments",{
                 method:"POST",
                 headers: {
                     'Content-type': 'application/json',
@@ -185,7 +185,7 @@ export const PetCareProvider = ({ children }) =>
         {
     
             toast.loading("Adding Routine ... ")
-            fetch("http://127.0.0.1:5000/routines",{
+            fetch("https://pet-care-scheduler.onrender.com/routines",{
                 method:"POST",
                 headers: {
                     'Content-type': 'application/json',
@@ -225,7 +225,7 @@ export const PetCareProvider = ({ children }) =>
         {
     
             toast.loading("Adding Supply ... ")
-            fetch("http://127.0.0.1:5000/supplies",{
+            fetch("https://pet-care-scheduler.onrender.com/supplies",{
                 method:"POST",
                 headers: {
                     'Content-type': 'application/json',
@@ -264,7 +264,7 @@ export const PetCareProvider = ({ children }) =>
 
     const updatePet = (name, breed, age, pet_id) => {
         toast.loading("Updating Pet ... ");
-        fetch(`http://127.0.0.1:5000/pets/update/${pet_id}`, {
+        fetch(`https://pet-care-scheduler.onrender.com/pets/update/${pet_id}`, {
             method: "PATCH",
             headers: {
                 'Content-type': 'application/json',
@@ -297,7 +297,7 @@ export const PetCareProvider = ({ children }) =>
    // Update Appointment
     const updateAppointment = (appointment_id, pet, appointment_date, type, status) => {
         toast.loading("Updating Appointment ... ");
-        fetch(`http://127.0.0.1:5000/appointments/${appointment_id}`, {
+        fetch(`https://pet-care-scheduler.onrender.com/appointments/${appointment_id}`, {
             method: "PATCH",
             headers: {
                 'Content-type': 'application/json',
@@ -330,7 +330,7 @@ export const PetCareProvider = ({ children }) =>
     // Update Supply
     const updateSupply = (supply_id, pet, item, quantity) => {
         toast.loading("Updating Supply ... ");
-        fetch(`http://127.0.0.1:5000/supplies/${supply_id}`, {
+        fetch(`https://pet-care-scheduler.onrender.com/supplies/${supply_id}`, {
             method: "PATCH",
             headers: {
                 'Content-type': 'application/json',
@@ -362,7 +362,7 @@ export const PetCareProvider = ({ children }) =>
     // Update Routine
     const updateRoutine = (routine_id, pet, routine_date, type) => {
         toast.loading("Updating Routine ... ");
-        fetch(`http://127.0.0.1:5000/routines/${routine_id}`, {
+        fetch(`https://pet-care-scheduler.onrender.com/routines/${routine_id}`, {
             method: "PATCH",
             headers: {
                 'Content-type': 'application/json',
@@ -396,7 +396,7 @@ export const PetCareProvider = ({ children }) =>
     const deletePet = (pet_id) => 
     {
         toast.loading("Deleting pet ... ")
-        fetch(`http://127.0.0.1:5000/pets/delete/${pet_id}`,{
+        fetch(`https://pet-care-scheduler.onrender.com/pets/delete/${pet_id}`,{
             method:"DELETE",
             headers: {
                 'Content-type': 'application/json',
@@ -432,7 +432,7 @@ export const PetCareProvider = ({ children }) =>
     const deleteAppointment = (appointment_id) => 
         {
             toast.loading("Deleting todo ... ")
-            fetch(`http://127.0.0.1:5000/appointments/${appointment_id}`,{
+            fetch(`https://pet-care-scheduler.onrender.com/appointments/${appointment_id}`,{
                 method:"DELETE",
                 headers: {
                     'Content-type': 'application/json',
@@ -469,7 +469,7 @@ export const PetCareProvider = ({ children }) =>
         const deleteRoutine = (routine_id) => 
             {
                 toast.loading("Deleting todo ... ")
-                fetch(`http://127.0.0.1:5000/routines/${routine_id}`,{
+                fetch(`https://pet-care-scheduler.onrender.com/routines/${routine_id}`,{
                     method:"DELETE",
                     headers: {
                         'Content-type': 'application/json',
@@ -506,7 +506,7 @@ export const PetCareProvider = ({ children }) =>
             const deleteSupply = (supply_id) => 
                 {
                     toast.loading("Deleting todo ... ")
-                    fetch(`http://127.0.0.1:5000/supplies/${supply_id}`,{
+                    fetch(`https://pet-care-scheduler.onrender.com/supplies/${supply_id}`,{
                         method:"DELETE",
                         headers: {
                             'Content-type': 'application/json',
