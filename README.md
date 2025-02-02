@@ -32,7 +32,7 @@ Technologies used:
 
 - Backend:
  1. Framework - Flask(Python)
- 2. Database - SQLite, PostgreSQLq
+ 2. Database - PostgreSQL
  3. API Testing - Postman
  4. File Structure - Flask Blueprints
  5. Security - JWT Authentication
