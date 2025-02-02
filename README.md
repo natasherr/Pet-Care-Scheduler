@@ -1,4 +1,11 @@
 Pet Care Scheduler
+
+Links:
+1. Github : [Github Link](https://github.com/natasherr/Pet-Care-Scheduler)
+2. Frontend:
+3. Backend:
+4. Recording: 
+
 Problem Statement:
 Pet owners often struggle to manage care routines, vet appointments, and supplies, leading to missed tasks.
 
@@ -15,4 +22,28 @@ User Stories:
 7.Add Supplies: Track pet supplies to avoid shortages.
 8.Update Pet Info: Modify pet details as needed.
 9.Delete Pet: Remove a pet's record if no longer needed.
+
+Technologies used:
+- Frontend: 
+ 1. Framework - React(Vite)
+ 2. Styling - TailwindCSS
+ 3. Routing - React Router
+ 4. Notifications - Toastify
+
+- Backend:
+ 1. Framework - Flask(Python)
+ 2. Database - SQLite, PostgreSQLq
+ 3. API Testing - Postman
+ 4. File Structure - Flask Blueprints
+ 5. Security - JWT Authentication
+
+-Deployment:
+ 1. Backend - Render
+ 2. Frontend - Vercel
+
+
+Contact Information:
+Email: [ashley.natasha1@student.moringaschool.com],[ashleyotiusla@gmail.com]
+Phone: [+254706777549]
+GitHub: [Github](https://github.com/natasherr)
 
