@@ -4,7 +4,7 @@ Links:
 1. [Github](https://github.com/natasherr/Pet-Care-Scheduler)
 2. Frontend: [Vercel](https://pet-care-project-lemon.vercel.app/)
 3. Backend: [Render](https://pet-care-scheduler.onrender.com)
-4. Recording: 
+4. [Demo Video](https://drive.google.com/file/d/1UcF22yNplq-XOONN6yNsItACJ2y5bNzh/view?usp=sharing)
 
 Problem Statement:
 Pet owners often struggle to manage care routines, vet appointments, and supplies, leading to missed tasks.
