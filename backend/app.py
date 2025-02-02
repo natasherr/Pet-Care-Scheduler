@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 CORS(app)
 # Migration initialization
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pet_care.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://pet_care_scheduler_db_user:A6Wh79y0DMjBdqXXCTJLBg7PQQgEsKWt@dpg-cuft05qn91rc73cjh0u0-a.oregon-postgres.render.com/pet_care_scheduler_db'
 migrate = Migrate(app,db)
 db.init_app(app)
 
