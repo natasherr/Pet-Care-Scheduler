@@ -44,11 +44,18 @@ def add_pet():
     current_user_id = get_jwt_identity()
     data = request.get_json()
 
-    new_pet= Pet(
-        name = data["name"],
-        breed = data["breed"],
-        age = data["age"],
-        user= current_user_id
+    # For debugging: Logging the incoming data
+    print("Incoming data:", data)
+
+    # Check for required fields
+    if not data or 'name' not in data or 'breed' not in data or 'age' not in data:
+        return jsonify({"error": "Missing required fields: name, breed, age"}), 400
+
+    new_pet = Pet(
+        name=data["name"],
+        breed=data["breed"],
+        age=data["age"],
+        user=current_user_id
     )
     db.session.add(new_pet)
     db.session.commit()

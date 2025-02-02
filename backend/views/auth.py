@@ -38,6 +38,7 @@ def current_user():
         'id': user.user_id,
         'name': user.name,
         'email': user.email,
+        'is_admin': user.is_admin,
         'is_verified': user.is_verified
     }
 
@@ -53,4 +54,4 @@ def logout():
     now = datetime.now(timezone.utc)
     db.session.add(TokenBlockList(jti=jti, created_at=now))
     db.session.commit()
-    return jsonify({"success ":"Logged out successfully"})
+    return jsonify({"success":"Logged out successfully"})

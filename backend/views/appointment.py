@@ -53,6 +53,8 @@ def add_appointment():
     current_user_id = get_jwt_identity()
     data = request.get_json()
 
+    print("Incoming data:", data)
+
     try:
         appointment_date = datetime.strptime(data['appointment_date'], "%Y-%m-%d %H:%M:%S")
     except ValueError:

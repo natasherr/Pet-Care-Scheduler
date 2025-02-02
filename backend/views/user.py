@@ -21,6 +21,7 @@ def fetch_users():
             "email": user.email,
             "password": user.password,
             "is_verified": user.is_verified,
+            "is_admin": user.is_admin,
             "pets":[{
                 "pet_id": pet.pet_id,
                 "name": pet.name,
@@ -45,6 +46,7 @@ def fetch_user_by_id(user_id):
             "name": user.name,
             "email": user.email,
             "is_verified": user.is_verified,
+            "is_admin": user.is_admin,
             "pets":[{
                 "pet_id": pet.pet_id,
                 "name": pet.name,
@@ -73,19 +75,19 @@ def add_user():
         new_user = User(name=name, email=email, password=password)
         db.session.add(new_user)
         db.session.commit()
-        try:
-            msg = Message(
-                subject='Account Verification',
-                sender=app.config["MAIL_DEFAULT_SENDER"],
-                recipients=[email],
-                body = "Thankyou for registering to our App(Pet Care Scheduler), where quality meets excellence."
-            )
-            mail.send(msg)
-            return jsonify({"message": "User created successfully"}), 201
+        # try:
+        #     msg = Message(
+        #         subject='Account Verification',
+        #         sender=app.config["MAIL_DEFAULT_SENDER"],
+        #         recipients=[email],
+        #         body = "Thankyou for registering to our App(Pet Care Scheduler), where quality meets excellence."
+        #     )
+        #     mail.send(msg)
+        return jsonify({"message": "User created successfully"}), 201
     
-        except Exception as e:
+        # except Exception as e:
         
-            return jsonify({"error": f"Failed to send {e}"}), 406
+        #     return jsonify({"error": f"Failed to send {e}"}), 406
 
 # UPDATE USER
 @user_bp.route('/users/update/<int:user_id>', methods=['PATCH'])
@@ -101,6 +103,7 @@ def update_user(user_id):
         email = data.get('email', user.email)
         password = data.get('password', user.password)
         is_verified = data.get('is_verified', user.is_verified)
+        is_admin = data.get('is_admin', user.is_admin)
 
         check_name = User.query.filter_by(name=name and id!= user.user_id).first()
         check_email = User.query.filter_by(email=email and id!= user.user_id).first()
@@ -113,6 +116,7 @@ def update_user(user_id):
             user.email = email
             user.password = password
             user.is_verified = is_verified
+            user.is_admin = is_admin
 
             db.session.commit()
             return jsonify({"success": "User updated successfully"}), 200
